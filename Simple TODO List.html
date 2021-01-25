@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Simple TODO List</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<script>
+	$(document).ready(function(){
+		$("#task").focus(function(){
+			$("#task").css('background-color','pink');
+		});
+		$( "#add" ).click(function() {
+			var todoText1 = $('input').val();
+			if(todoText1 == ""){
+				alert( "Error: Task cannot be empty" );
+
+			}else{
+				$('#task').val("");
+				$('ul').append('<li>' + todoText1 + '<span><img src="bin.png" alt="dustbin"></span>');
+								$("#task").css('background-color','white');
+}
+			});
+
+		$('input').keypress(function(event){
+			var todoText = $(this).val();
+
+			if(event.which === 13){
+				if(todoText == ""){
+					alert( "Error: Task cannot be empty" );
+
+				}else{
+					$(this).val("");
+					$('ul').append('<li>' + todoText + '<span><img src="bin.png" alt="dustbin"></span>');
+					$("#task").css('background-color','white');
+				}
+
+			}
+		});
+		$('ul').on('click', "span" , function(event){
+			$(this).parent().fadeOut(1000,function(){
+				$(this).hide();
+			});
+	});
+		$('ul').on('click', 'li', function(){
+			$(this).toggleClass('test');
+		});
+	});
+</script>
+<body>
+	<div id="container"> 
+		<h3> Simple Todo list</h3>
+		<input id="task" type="text" placeholder="">
+		<input id="add" type="button" name="" value="ADD+" onclick="">
+		<ul> 
+			<li>Learn jQuery<span><img src="bin.png"></span></li> 
+			<li>Do Some Example<span><img src="bin.png"></span></li>
+			<li>Exercise<span><img style="text-align: right" src="bin.png"></span></li> 
+			<li>Practise More<span><img src="bin.png"></i></span></li> 
+		</ul> 
+	</div> 
+</body>
+
+</html>
